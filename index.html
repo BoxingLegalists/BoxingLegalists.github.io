@@ -1,15 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <p>Boxing Legalists</p>
-
-    </div>
-</body>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="./js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				const stu={
+					id:1001,
+					name:"jack",
+					age:18
+				}
+				$("#objectDiv")
+				.append("学号是："+stu.id +"<br/>")
+				.append("姓名是："+stu.name+"<br/>")
+				.append("年龄是："+stu.age)
+				
+				let jaArr=["中","美","俄"]
+				$(jaArr).each(function(i,item){
+					$("#arraySel").append("<option value'"+(i+1)+"'>"+item+"</option>")
+					
+				})
+				$(jaArr).each(function(i,item){
+					$("#arrayUl").append("<li>"+item+"</li>")
+				})
+				const uesrArray=[{
+					id:1001,
+					name:"jack",
+					sfz:"4310281155577",
+					email:"156@qq.com",
+					pwd:"156"
+				},
+				{
+					id:1002,
+					name:"陈",
+					sfz:"4310281155574",
+					email:"175@qq.com",
+					pwd:"0735"
+				},
+				{
+					id:1003,
+					name:"刀",
+					sfz:"4310281155578",
+					email:"185@qq.com",
+					pwd:"3583"
+				},{
+					id:1004,
+					name:"仔",
+					sfz:"4310281157578",
+					email:"152@qq.com",
+					pwd:"783"
+				}]
+				let $table=$("<table border='3'></table>").append("<tr><td>ID</td><td>用户名</td><td>身份证</td><td>邮箱</td><td>密码</td></tr>");
+				$(uesrArray).each(function(){
+					$table.append("<tr><td>"+this.id+"</td><td>"
+									+this.name+"</td><td>"
+									+this.sfz+"</td><td>"
+									+this.email+"</td><td>"
+									+this.pwd+"</td></tr>");
+				})
+				$("#objectArrayDiv").append($table);
+			})
+		</script>
+	</head>
+	<body>
+		一，JSOM格式的user对象：<div id="objectDiv"></div><br />
+		二，JSON格式的字符串数组：&nbsp;&nbsp;<select id="arraySel"></select>
+		<ul id="arrayUl"></ul>
+		三，JSON格式的user对象数组：<div id="objectArrayDiv"></div>
+	</body>
 </html>
