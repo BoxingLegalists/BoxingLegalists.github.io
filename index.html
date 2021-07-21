@@ -1,72 +1,334 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<script src="./js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(function(){
-				const stu={
-					id:1001,
-					name:"jack",
-					age:18
-				}
-				$("#objectDiv")
-				.append("学号是："+stu.id +"<br/>")
-				.append("姓名是："+stu.name+"<br/>")
-				.append("年龄是："+stu.age)
-				
-				let jaArr=["中","美","俄"]
-				$(jaArr).each(function(i,item){
-					$("#arraySel").append("<option value'"+(i+1)+"'>"+item+"</option>")
-					
-				})
-				$(jaArr).each(function(i,item){
-					$("#arrayUl").append("<li>"+item+"</li>")
-				})
-				const uesrArray=[{
-					id:1001,
-					name:"jack",
-					sfz:"4310281155577",
-					email:"156@qq.com",
-					pwd:"156"
-				},
-				{
-					id:1002,
-					name:"陈",
-					sfz:"4310281155574",
-					email:"175@qq.com",
-					pwd:"0735"
-				},
-				{
-					id:1003,
-					name:"刀",
-					sfz:"4310281155578",
-					email:"185@qq.com",
-					pwd:"3583"
-				},{
-					id:1004,
-					name:"仔",
-					sfz:"4310281157578",
-					email:"152@qq.com",
-					pwd:"783"
-				}]
-				let $table=$("<table border='3'></table>").append("<tr><td>ID</td><td>用户名</td><td>身份证</td><td>邮箱</td><td>密码</td></tr>");
-				$(uesrArray).each(function(){
-					$table.append("<tr><td>"+this.id+"</td><td>"
-									+this.name+"</td><td>"
-									+this.sfz+"</td><td>"
-									+this.email+"</td><td>"
-									+this.pwd+"</td></tr>");
-				})
-				$("#objectArrayDiv").append($table);
-			})
-		</script>
-	</head>
-	<body>
-		一，JSOM格式的user对象：<div id="objectDiv"></div><br />
-		二，JSON格式的字符串数组：&nbsp;&nbsp;<select id="arraySel"></select>
-		<ul id="arrayUl"></ul>
-		三，JSON格式的user对象数组：<div id="objectArrayDiv"></div>
-	</body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>personal portfolio</title>
+    <style type="text/css">
+        @font-face {
+            font-family: "Grotesk";
+            src: url("./fonts/Grotesk.woff2") format("woff2");
+        }
+    </style><!-- intro style -->
+
+</head>
+
+<body>
+
+    <style>
+        html,
+        body,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .author {
+            font-family: Grotesk;
+            font-size: 26px;
+            color: #000000;
+            letter-spacing: 0.013em;
+            line-height: 1.25;
+            font-weight: 400;
+            text-transform: none;
+            font-style: normal;
+            margin-left: 3%;
+        }
+
+        section {
+            margin: 100px 3% 8%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        section div {
+            width: 100%;
+        }
+
+        section div img {
+            width: 100%;
+        }
+
+        .portfolio .left {
+            margin-left: 3%;
+        }
+
+        .portfolio .right {
+            padding-top: 8vw;
+            margin-left: 20%;
+        }
+
+        .portfolio .title {
+            font-family: Grotesk;
+            margin-top: 5px;
+            font-size: 20px;
+            line-height: 1.25;
+            font-weight: 400;
+        }
+
+        .portfolio .center {
+            margin-left: 4%;
+            width: 52%;
+        }
+
+        .portfolio .calendar {
+            width: 56%;
+            flex: 1;
+        }
+
+        .portfolio .sntky {
+            width: 80%;
+            margin-top: 12%;
+            flex: 1;
+        }
+
+
+        .portfolio .in_town {
+            width: 40%;
+        }
+
+        .portfolio .posters {
+            width: 28%;
+        }
+
+        .portfolio.start {
+            justify-content: start;
+        }
+        .portfolio.mb0{
+            margin-bottom: 0;
+        }
+
+        .portfolio .phovea {
+            width: 28%;
+            margin-left: 8%;
+            position: relative;
+            top: -180px;
+        }
+
+        .portfolio .ntky {
+            width: 46%;
+            margin-left: 16%;
+        }
+
+        .portfolio .huber {
+            width: 52%;
+        }
+
+        .portfolio .alice {
+            width: 28%;
+            margin-left: 14%;
+        }
+        .portfolio .masque{
+            width: 22%;
+            margin-left: 6%;
+            position: relative;
+            top: 75px;
+        }
+        .portfolio .telephone{
+            width: 46%;
+            margin-left: 14%;
+        }
+        .portfolio .is_war{
+            width: 40%;
+        }
+        .portfolio .belvedere{
+            margin-left: 20%;
+            width: 28%;
+        }
+        .portfolio .movie{
+            width: 58%;
+        }
+        footer{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        footer a{
+            font-family: Grotesk;
+            color: #000000;
+        }
+
+        @media screen and (max-width: 750px) {
+    .portfolio{
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .portfolio .left, .portfolio .center, .portfolio .calendar, .portfolio .in_town, .portfolio .huber, .portfolio .is_war{
+        width: 100%;
+        margin-left: 0;
+    } 
+    .portfolio .right{
+        margin-left: 0;
+    }
+    .portfolio .sntky, .portfolio .posters{
+        width: 100%;
+        margin-top: 30px;
+    }
+    .portfolio .phovea, .portfolio .masque{
+        width: 100%;
+        margin-left: 0;
+        top: 0;
+    }
+    .portfolio .ntky, .portfolio .alice, .portfolio .telephone, .portfolio .belvedere{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 30px;
+    }
+}
+    </style>
+    <header>
+        <a href="/">
+            <h1 class="author">personal portfolio</h1>
+        </a>
+    </header>
+    <section class="portfolio">
+        <div class="left">
+            <img src="./ps 作业/ea24041b88bbe2cbf63f12bcbc62dc2b144cfd248fb6f-wqZU5y.jpg" alt="">
+            <div class="title">
+                <p>wireless</p>
+                <p>Earphone</p>
+            </div>
+        </div>
+        <div class="right">
+            <img src="./ps 作业/4ec370aec90cd6f84e5aa4db7aa58292471b82f16737f-qLQqYK.png" alt="">
+            <div class="title">
+                <p>Goods table</p>
+                <p>Shopping Festival</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio">
+        <div class="center">
+            <img src="./ps 作业/5bace5d69794b601fc56c117f5264bea9dbf0d6d36d6e4-OwLorn.jpg" alt="">
+            <div class="title">
+                <p>Prosperous area</p>
+                <p>business zone</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio left">
+        <div>
+            <div class="calendar">
+                <img src="./ps 作业/77b2bc42a533079b9a9b424de82d0d7ac7887df59d4f-HrAlPi.jpg" alt="">
+                <div class="title">
+                    <p>Tame luoren</p>
+                    <p>dusk</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="sntky">
+                <img src="./ps 作业/a66f97a1a0ea3a423598fc85c3f2beee2a1e07db291eb-O28UJI.jpg" alt="">
+                <div class="title">
+                    <p>outer space</p>
+                    <p>explore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio">
+      
+        <div class="posters">
+            <img src="./ps 作业/e5f27aa9a38593cfa0e639fe3a2e1ade38f6be3e344be-Tnp2WJ_fw1200.jpg" alt="">
+            <div class="title">
+                <p>The Oriental Pearl</p>
+                <p>Shanghai</p>
+            </div>
+        </div>
+        <div class="in_town">
+            <img src="./ps 作业/c37c25ac79d16dd3fd62a35a9ecc4ed7d933b572fc61-ouyLyW_fw1200.jpg" alt="">
+            <div class="title">
+                <p>Parenting</p>
+                <p>Warm travel</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio start mb0">
+        <div class="phovea">
+            <img src="./ps 作业/060564b587b50f5f0bc7449238ed8eb1fe1e1884272a0-SYhWmH_fw1200.jpg" alt="">
+            <div class="title">
+                <p>Shangri la affiliated prison</p>
+                <p>Freedom is bound by beauty</p>
+            </div>
+        </div>
+        <div class="ntky">
+            <img src="./ps 作业/abb857d07bce0076bedf252561cfc5e4505ab3e46dec4-14F5RD.jpg" alt="">
+            <div class="title">
+                <p> peasant</p>
+                <p>Various Posters</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio start">
+        <div class="huber">
+            <img src="./ps 作业/0d23909f332c7397a7bc9e44694183018c450cb6c00d7-Cozdkt.jpg" alt="">
+            <div class="title">
+                <p>Rendering</p>
+                <p>Book</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio">
+        <div class="center">
+            <img src="./ps 作业/df8f89b488b8c91fc9af743ef709f601f2248d383cbe1-n2tBqP_fw1200.png" alt="">
+            <div class="title">
+                <p>Typography Posters</p>
+                <p>Various Posters</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio start">
+        <div class="telephone">
+            <img src="./ps 作业/db3e360525c45e7f499c8b80f2ae0f80df7d408e15309-X4IvJV.jpg" alt="">
+            <div class="title">
+                <p>rain</p>
+                <p>city</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio start mb0">
+        <div class="masque">
+            <img src="./ps 作业/ba614f221d6837acdeaa610378bc82db4dce65b239b823-S19Uxh.jpg" alt="">
+            <div class="title">
+                <p>Pretty girl</p>
+                <p>Turn around</p>
+            </div>
+        </div>
+        <div class="ntky">
+            <img src="./ps 作业/c3410d0ed68dcb75d81c59e9fa617494a55dae842f987-6W7R5z.jpg" alt="">
+            <div class="title">
+                <p> peasant</p>
+                <p>Various Posters</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio start">
+        <div class="huber">
+            <img src="./ps 作业/2e43b3971692ed92e4eeaec9f447a13a116cc75b11e1c-9SumAz.jpg" alt="">
+            <div class="title">
+                <p>Rendering</p>
+                <p>Book</p>
+            </div>
+        </div>
+    </section>
+    <section class="portfolio">
+        <div class="center movie">
+            <img src="./ps 作业/e98167077079a6fb3a880337d9668a8aacebc2134b756-Luon1W_fw1200.jpg" alt="">
+            <div class="title">
+                <p>Reto Albertalli</p>
+                <p>Visual identity</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <a href="/">© rfirefly</a>
+    </footer>
+</body>
+
 </html>
